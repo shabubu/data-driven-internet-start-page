@@ -1,5 +1,5 @@
 # data-driven-internet-start-page
-DDINSP
+DDISP is a Simple to use personalizable Internet start page for browser.  You simply need to input basic data and DDISP will do the rest!  To view DDISP in action now check out https://shabubu.github.io/data-driven-internet-start-page/index.html 
 
 ## Development
 To work in local environment in order to get around CORS issues ensure you have Node.js installed then run
