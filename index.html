@@ -16,8 +16,12 @@
 <div id="ddisp"></div>
 
 <script type="text/babel">
-  const { title } = appData;
+  const {
+    title,
+    background,
+  } = appData;
   document.title = title;
+  document.body.style.background = background;
 
   ReactDOM.render(
     App(),
