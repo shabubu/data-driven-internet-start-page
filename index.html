@@ -1,45 +1,61 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8" />
-  <title></title>
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
 
-  <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
-  <script src="./data.js"></script>
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="./data.js"></script>
+  </head>
 
-  <!-- Load all components -->
-  <script src="./components/LinkGroup.jsx" type="text/babel"></script>
-  <script src="./components/App.jsx" type="text/babel"></script>
-</head>
-<body>
-<div id="ddisp"></div>
+  <body>
+    <div id="ddisp"></div>
 
-<script type="text/babel">
-  const {
-    title,
-    background,
-    favicon,
-  } = appData;
+    <script type="text/babel">
+      function LinkGroup (props) {
+        return (
+          <div>
+            <span>Links</span>
+            <ul>
+              <li><a href="https://reddit.com">Reddit</a></li>
+            </ul>
+          </div>
+        );
+      }
 
-  document.title = title;
-  document.body.style.background = background;
+      function App() {
+        return (
+          <div>
+            <LinkGroup />
+          </div>
+        );
+      }
 
-  if (favicon) {
-    const faviconElement = document.createElement('link');
-    faviconElement.type = 'image/x-icon';
-    faviconElement.rel = 'shortcut icon';
-    faviconElement.href = favicon;
-    document.getElementsByTagName('head')[0].appendChild(faviconElement);
-  }
+      const {
+        title,
+        background,
+        favicon,
+      } = appData;
 
-  ReactDOM.render(
-    App(),
-    document.getElementById('ddisp'),
-  );
+      document.title = title;
+      document.body.style.background = background;
 
-</script>
-</body>
+      if (favicon) {
+        const faviconElement = document.createElement('link');
+        faviconElement.type = 'image/x-icon';
+        faviconElement.rel = 'shortcut icon';
+        faviconElement.href = favicon;
+        document.getElementsByTagName('head')[0].appendChild(faviconElement);
+      }
+
+      ReactDOM.render(
+        App(),
+        document.getElementById('ddisp'),
+      );
+
+    </script>
+  </body>
 </html>
 
