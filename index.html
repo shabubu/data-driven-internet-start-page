@@ -8,13 +8,35 @@
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
     <script src="./data.js"></script>
+
+    <link href="style.css" rel="stylesheet" type="text/css">
   </head>
 
   <body>
     <div id="ddisp"></div>
 
     <script type="text/babel">
-      function LinkGroup (props) {
+      function Logo() {
+        const { logo } = appData;
+        let innerJsx;
+
+        if (logo) {
+          innerJsx = (
+            <img
+              id="logo"
+              src={appData.logo}
+            />
+          );
+        }
+
+        return (
+          <div id="logo-wrapper">
+            {innerJsx}
+          </div>
+        );
+      }
+
+      function LinkGroup () {
         return (
           <div>
             <span>Links</span>
@@ -28,6 +50,7 @@
       function App() {
         return (
           <div>
+            <Logo />
             <LinkGroup />
           </div>
         );

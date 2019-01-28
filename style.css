@@ -1,0 +1,8 @@
+#logo-wrapper {
+    text-align: center;
+}
+
+#logo {
+    display: inline-block;
+    max-height: 350px;
+}

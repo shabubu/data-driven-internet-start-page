@@ -1,5 +1,6 @@
 const appData = {
-  title: 'Your Personal Internet Start Page',
   background: '#EEEEEE',
   favicon: 'exampleAssets/favicon.ico',
+  logo: 'exampleAssets/testLogo.png',
+  title: 'Your Personal Internet Start Page',
 };
