@@ -6,3 +6,32 @@
     display: inline-block;
     max-height: 350px;
 }
+
+#timezone-wrapper {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+#timezone-wrapper ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 10px;
+}
+
+.timezone-display {
+    color: #d12326;
+    font-size: 14px;
+    font-weight: 100;
+    text-align: left;
+}
+
+.timezone-display h1 {
+    color: #0b84c1;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.timezone-display span {
+    display: block;
+}

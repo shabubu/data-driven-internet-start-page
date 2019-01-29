@@ -7,6 +7,7 @@
     <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://unpkg.com/create-react-class@15.6.0-rc.0/create-react-class.min.js"></script>
     <script src="./data.js"></script>
 
     <link href="style.css" rel="stylesheet" type="text/css">
@@ -16,6 +17,65 @@
     <div id="ddisp"></div>
 
     <script type="text/babel">
+      const Timezones = createReactClass({
+        getInitialState: function() {
+          this.interval = setInterval(
+            () => {
+              this.setState({
+                date: new Date(),
+              });
+            },
+            500,
+          );
+
+          return {
+            date: new Date(),
+          };
+        },
+
+        render() {
+          const {
+            time: {
+              locale = 'en-US',
+              zones = [],
+            },
+          } = appData;
+          const { date } = this.state;
+          const timezonesJsx = [];
+
+          zones.forEach((timezone) => {
+            const timeOptions = {
+              timeZone: timezone.region,
+              hour: '2-digit',
+              minute: '2-digit',
+            };
+            const dateOptions = {
+              timeZone: timezone.region,
+              weekday: "short",
+              year: 'numeric',
+              month: 'short',
+              day: '2-digit',
+            };
+
+            timezonesJsx.push(
+              <li className="timezone-display">
+                <h1>{timezone.title}</h1>
+                <span>{date.toLocaleString(locale, timeOptions)}</span>
+                <span>{date.toLocaleString(locale, dateOptions)}</span>
+              </li>
+            );
+          });
+
+          return (
+            <div id="timezone-wrapper">
+              <ul>
+                {timezonesJsx}
+              </ul>
+            </div>
+          );
+        }
+      });
+
       function Logo() {
         const { logo } = appData;
         let innerJsx;
@@ -50,6 +110,7 @@
       function App() {
         return (
           <div>
+            <Timezones />
             <Logo />
             <LinkGroup />
           </div>
@@ -62,8 +123,12 @@
         favicon,
       } = appData;
 
-      document.title = title;
-      document.body.style.background = background;
+      if (title) {
+        document.title = title;
+      }
+      if (background) {
+        document.body.style.background = background;
+      }
 
       if (favicon) {
         const faviconElement = document.createElement('link');
