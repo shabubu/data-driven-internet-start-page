@@ -35,3 +35,12 @@
 .timezone-display span {
     display: block;
 }
+
+#quote-of-day {
+    color: grey;
+}
+
+#quote-of-day table{
+    margin-left: auto;
+    margin-right: auto;
+}
