@@ -20,6 +20,17 @@ const appData = {
 
   quoteOfTheDay: true,
 
+  headerLinks: [
+    {
+      name: 'Project Github Page',
+      url: 'https://github.com/shabubu/json-start-page',
+    },
+    {
+      name: 'Author Github Page',
+      url: 'https://github.com/shabubu/',
+    },
+  ],
+
   linkGroups: [
     {
       title: 'Social Networks',

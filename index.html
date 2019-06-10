@@ -97,10 +97,31 @@
         );
       }
 
+      function HeaderLinks(props) {
+        const { headerLinks = [] } = appData;
+        const headerLinksJsx = [];
+
+        headerLinks.forEach(headerLink => (
+          headerLinksJsx.push(
+            <h2>
+              <a href={headerLink.url}>
+                {headerLink.name}
+              </a>
+            </h2>
+          )
+        ));
+
+        return (
+          <div id="header-links">
+            {headerLinksJsx}
+          </div>
+        );
+      }
+
       function LinkGroup(props) {
         const {
-          title,
-          links,
+          title = '',
+          links = [],
         } = props;
         const linkItems = [];
 
@@ -232,6 +253,7 @@
           <div>
             <Timezones />
             <Logo />
+            <HeaderLinks />
             <LinkGroups />
             <QuoteOfDay />
           </div>
