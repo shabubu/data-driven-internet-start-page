@@ -44,7 +44,7 @@
           const { date } = this.state;
           const timezonesJsx = [];
 
-          zones.forEach((timezone) => {
+          zones.forEach(timezone => {
             const timeOptions = {
               timeZone: timezone.region,
               hour: '2-digit',
@@ -97,13 +97,76 @@
         );
       }
 
-      function LinkGroup() {
+      function LinkGroup(props) {
+        const {
+          title,
+          links,
+        } = props;
+        const linkItems = [];
+
+        links.forEach(link => (
+          linkItems.push(
+            <li>
+              <a href={link.url}>
+                {link.name}
+              </a>
+            </li>
+          )
+        ));
+
         return (
           <div className="link-group">
-            <span>Links</span>
+            <h3>{title}</h3>
             <ul>
-              <li><a href="https://reddit.com">Reddit</a></li>
+              {linkItems}
             </ul>
+          </div>
+        );
+      }
+
+      function LinkGroups() {
+        const rowsJsx = [];
+        const chunks = [];
+
+        for (let i = 0; i < appData.linkGroups.length; i += 3) {
+          chunks.push(
+            appData.linkGroups.slice(i, i + 3),
+          );
+        }
+
+        chunks.forEach(chunk => {
+          const dimensions = [];
+
+          chunk.forEach(linkGroupData => {
+            dimensions.push(
+              <td width="33%">
+                <LinkGroup
+                  title={linkGroupData.title}
+                  links={linkGroupData.links}
+                />
+              </td>
+            );
+          });
+
+          // fill chunk to 3
+          for (let i = 0; i < (3 - chunk.length); i++) {
+            dimensions.push(<td width="33%"></td>);
+          }
+
+          rowsJsx.push(
+            <tr>
+              {dimensions}
+            </tr>
+          );
+        });
+
+        return (
+          <div id="link-groups">
+            <table>
+              <tbody>
+                {rowsJsx}
+              </tbody>
+            </table>
           </div>
         );
       }
@@ -136,8 +199,8 @@
                 } = response;
 
                 if (
-                        author
-                        && quote
+                  author
+                  && quote
                 ) {
                   self.setState({
                     author,
@@ -169,7 +232,7 @@
           <div>
             <Timezones />
             <Logo />
-            <LinkGroup />
+            <LinkGroups />
             <QuoteOfDay />
           </div>
         );

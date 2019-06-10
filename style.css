@@ -36,6 +36,40 @@
     display: block;
 }
 
+.link-group h3 {
+    color: #0b84c1;
+    font-weight: bold;
+    font-size: 25px;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.link-group ul {
+    list-style: none;
+}
+
+.link-group a {
+    text-decoration: none;
+    color: #d12326;
+    margin-top: 5px;
+    font-size: 20px;
+    text-align: center;
+    margin-left: 25px;
+}
+
+#link-groups table{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 50%;
+}
+
+#link-groups table td {
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: top;
+}
+
 #quote-of-day {
     color: grey;
 }
