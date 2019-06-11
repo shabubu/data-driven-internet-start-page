@@ -340,7 +340,7 @@
           const self = this;
           if (appData.quoteOfTheDay) {
             axios
-              .get('http://quotes.rest/qod.json')
+              .get('https://quotes.rest/qod.json')
               .then(response => {
                 const {
                   data: {
