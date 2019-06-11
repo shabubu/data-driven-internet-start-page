@@ -9,6 +9,7 @@
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
     <script src="https://unpkg.com/create-react-class@15.6.0-rc.0/create-react-class.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://kit.fontawesome.com/3300c9efd2.js"></script>
     <script src="./data.js"></script>
 
     <link href="style.css" rel="stylesheet" type="text/css">
@@ -96,6 +97,124 @@
           </div>
         );
       }
+
+      const SearchBar = createReactClass({
+        getInitialState() {
+          const { searchCommands = [] } = appData;
+          const selected = searchCommands[0];
+          const options = {};
+
+          searchCommands.forEach(searchCommand => (
+            options[searchCommand.command] = searchCommand
+          ));
+
+          return {
+            options,
+            searchCommands,
+            searchQuery: '',
+            selected,
+          };
+        },
+
+        onChange(event) {
+          const {
+            target: {
+              value,
+            },
+          } = event;
+          const { options } = this.state;
+
+          // check to see if the search term is a command
+          if (options[value]) {
+            const searchQuery = '';
+            const selected = options[value];
+
+            this.setState({
+              searchQuery,
+              selected,
+            });
+          } else {
+            this.setState({
+              searchQuery: value,
+            });
+          }
+        },
+
+        onSubmit(event) {
+          event.preventDefault();
+
+          const {
+            searchQuery,
+            selected: {
+              url,
+            },
+          } = this.state;
+
+          window.location = `${url}${encodeURIComponent(searchQuery)}`;
+        },
+
+        render() {
+          const jsx = [];
+          const {
+            searchCommands,
+            searchQuery,
+            selected: {
+              label,
+              url,
+            },
+          } = this.state;
+
+          if (
+            label
+            && url
+          ) {
+            const helpItems = [];
+
+            searchCommands.forEach(option => {
+              const {
+                command,
+                label,
+              } = option;
+
+              helpItems.push(
+                <li>
+                  <span>
+                    <span className="command">{command} - {label}</span>
+                  </span>
+                </li>
+              );
+            });
+
+            jsx.push(
+              <div className="search-block">
+                <form
+                  id="search-form"
+                  onSubmit={this.onSubmit}
+                >
+                  <input
+                    type="text"
+                    name="queryString"
+                    id="search"
+                    autoFocus="autofocus"
+                    autoComplete="off"
+                    placeholder={`Search ${label}`}
+                    onChange={this.onChange}
+                    value={searchQuery}
+                  />
+                  <label htmlFor="search">
+                    <span id="search-icon" className="fas fa-search"></span>
+                  </label>
+                </form>
+                <ul id="search-help" className="search-help">
+                  {helpItems}
+                </ul>
+              </div>
+            );
+          }
+
+          return jsx;
+        }
+      });
 
       function HeaderLinks(props) {
         const { headerLinks = [] } = appData;
@@ -253,6 +372,7 @@
           <div>
             <Timezones />
             <Logo />
+            <SearchBar />
             <HeaderLinks />
             <LinkGroups />
             <QuoteOfDay />
@@ -269,6 +389,7 @@
       if (title) {
         document.title = title;
       }
+
       if (background) {
         document.body.style.background = background;
       }

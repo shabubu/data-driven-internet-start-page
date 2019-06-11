@@ -105,4 +105,32 @@ const appData = {
       ],
     },
   ],
+
+  searchCommands: [
+    {
+      command: '/g',
+      label: 'Google',
+      url: 'https://google.com/search?q=',
+    },
+    {
+      command: '/d',
+      label: 'DuckDuckGo',
+      url: 'https://duckduckgo.com/?q=',
+    },
+    {
+      command: '/h',
+      label: 'GitHub',
+      url: 'https://github.com/search?q=',
+    },
+    {
+      command: '/w',
+      label: 'Wikipedia',
+      url: 'http://en.wikipedia.org/wiki/Special:Search/',
+    },
+    {
+      command: '/y',
+      label: 'YouTube',
+      url: 'https://youtube.com/results?search_query=',
+    },
+  ],
 };
