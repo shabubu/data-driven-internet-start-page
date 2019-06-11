@@ -86,9 +86,7 @@
 
 #quote-of-day {
     color: grey;
-}
-
-#quote-of-day table{
+    max-width: 60%;
     margin-left: auto;
     margin-right: auto;
 }
