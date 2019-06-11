@@ -140,6 +140,17 @@
           }
         },
 
+        onHelpClick(event) {
+          const value = event.target.getAttribute('command');
+          const fakeEvent = {
+            target: {
+              value,
+            },
+          };
+
+          this.onChange(fakeEvent);
+        },
+
         onSubmit(event) {
           event.preventDefault();
 
@@ -179,7 +190,13 @@
               helpItems.push(
                 <li>
                   <span>
-                    <span className="command">{command} - {label}</span>
+                    <span
+                      className="command"
+                      command={command}
+                      onClick={this.onHelpClick}
+                    >
+                      {command} - {label}
+                    </span>
                   </span>
                 </li>
               );
