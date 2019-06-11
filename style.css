@@ -50,6 +50,10 @@
     letter-spacing: 2px;
 }
 
+.link-group {
+    text-align: center;
+}
+
 .link-group h3 {
     color: #0b84c1;
     font-weight: bold;
@@ -60,7 +64,13 @@
 }
 
 .link-group ul {
+    padding-left: 0;
     list-style: none;
+    display: inline-block;
+}
+
+.link-group li {
+    text-align: left;
 }
 
 .link-group a {
@@ -68,8 +78,6 @@
     color: #d12326;
     margin-top: 5px;
     font-size: 20px;
-    text-align: center;
-    margin-left: 25px;
 }
 
 #link-groups table{
