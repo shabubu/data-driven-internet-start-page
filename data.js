@@ -1,8 +1,5 @@
 const appData = {
-  background: '#EEEEEE',
-  favicon: 'exampleAssets/favicon.ico',
   logo: 'exampleAssets/testLogo.png',
-  title: 'Your Personal Internet Start Page',
 
   time: {
     locale: 'en-US',
@@ -17,6 +14,10 @@ const appData = {
       },
     ],
   },
+
+  background: '#EEEEEE',
+  favicon: 'exampleAssets/favicon.ico',
+  title: 'Your Personal Internet Start Page',
 
   quoteOfTheDay: true,
 

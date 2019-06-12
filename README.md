@@ -12,21 +12,97 @@ To view your DDISP locally simply point your browser to:
 [Demo](https://shabubu.github.io/json-start-page/)
 ## Data Keys
 ![Default View](readmeAssets/default-view.png?raw=true "Default View")
-### Background
 
-### Favicon
+### 1. Logo
 
-### Logo
+Default:
+```javascript
+{
+  logo: 'exampleAssets/testLogo.png',
+}
+```
 
-### Title
+### 2. Time
 
-### Time
+Default:
+```javascript
+{
+  time: {
+    locale: 'en-US',
+    zones: [
+      {
+        region: 'America/Los_Angeles',
+        title: 'Local Time',
+      },
+      {
+        region: 'Europe/Paris',
+        title: 'Paris Time',
+      },
+    ],
+  },
+}
+```
 
-### Quote of the Day
+### 3. Search Commands
 
-### Header Links
-
-### Link Groups
-
-### Search Commands
+Default:
+```javascript
+{
+  
+}
+```
 ![Search Help Demo](readmeAssets/search-help-demo.gif?raw=true "Search Help Demo")
+
+### 4. Header Links
+
+Default:
+```javascript
+{
+  
+}
+```
+
+### 5. Link Groups
+
+Default:
+```javascript
+{
+  
+}
+```
+
+### 6. Quote of the Day
+
+Default:
+```javascript
+{
+  
+}
+```
+
+### 7. Background
+
+Default:
+```javascript
+{
+  
+}
+```
+
+### 8. Favicon
+
+Default:
+```javascript
+{
+  
+}
+```
+
+### 9. Title
+
+Default:
+```javascript
+{
+  
+}
+```
