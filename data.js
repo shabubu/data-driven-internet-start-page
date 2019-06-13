@@ -15,11 +15,33 @@ const appData = {
     ],
   },
 
-  background: '#EEEEEE',
-  favicon: 'exampleAssets/favicon.ico',
-  title: 'Your Personal Internet Start Page',
-
-  quoteOfTheDay: true,
+  searchCommands: [
+    {
+      command: '/g',
+      label: 'Google',
+      url: 'https://google.com/search?q={searchQuery}',
+    },
+    {
+      command: '/d',
+      label: 'DuckDuckGo',
+      url: 'https://duckduckgo.com/?q={searchQuery}',
+    },
+    {
+      command: '/h',
+      label: 'GitHub',
+      url: 'https://github.com/search?q={searchQuery}',
+    },
+    {
+      command: '/w',
+      label: 'Wikipedia',
+      url: 'http://en.wikipedia.org/wiki/Special:Search/{searchQuery}',
+    },
+    {
+      command: '/y',
+      label: 'YouTube',
+      url: 'https://youtube.com/results?search_query={searchQuery}',
+    },
+  ],
 
   headerLinks: [
     {
@@ -107,31 +129,11 @@ const appData = {
     },
   ],
 
-  searchCommands: [
-    {
-      command: '/g',
-      label: 'Google',
-      url: 'https://google.com/search?q={searchQuery}',
-    },
-    {
-      command: '/d',
-      label: 'DuckDuckGo',
-      url: 'https://duckduckgo.com/?q={searchQuery}',
-    },
-    {
-      command: '/h',
-      label: 'GitHub',
-      url: 'https://github.com/search?q={searchQuery}',
-    },
-    {
-      command: '/w',
-      label: 'Wikipedia',
-      url: 'http://en.wikipedia.org/wiki/Special:Search/{searchQuery}',
-    },
-    {
-      command: '/y',
-      label: 'YouTube',
-      url: 'https://youtube.com/results?search_query={searchQuery}',
-    },
-  ],
+  quoteOfTheDay: true,
+
+  background: '#EEEEEE',
+
+  favicon: 'exampleAssets/favicon.ico',
+
+  title: 'Your Personal Internet Start Page',
 };
