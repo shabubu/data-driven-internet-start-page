@@ -40,73 +40,76 @@
             time: {
               locale = 'en-US',
               zones = [],
-            },
+            } = {},
           } = appData;
           const { date } = this.state;
+          const jsxToRender = [];
           const timezonesJsx = [];
 
-          zones.forEach(timezone => {
-            const { region } = timezone;
-            const timeOptions = {
-              hour: '2-digit',
-              minute: '2-digit',
-            };
-            const dateOptions = {
-              weekday: "short",
-              year: 'numeric',
-              month: 'short',
-              day: '2-digit',
-            };
+          if (zones.length) {
+            zones.forEach(timezone => {
+              const { region } = timezone;
+              const timeOptions = {
+                hour: '2-digit',
+                minute: '2-digit',
+              };
+              const dateOptions = {
+                weekday: "short",
+                year: 'numeric',
+                month: 'short',
+                day: '2-digit',
+              };
 
-            // only set timeZone if real region provided
-            if (region.toLowerCase() !== 'local') {
-              timeOptions.timeZone = region;
-              dateOptions.timeZone = region;
-            }
+              // only set timeZone if real region provided
+              if (region.toLowerCase() !== 'local') {
+                timeOptions.timeZone = region;
+                dateOptions.timeZone = region;
+              }
 
-            timezonesJsx.push(
-              <li className="timezone-display">
-                <h1>{timezone.title}</h1>
-                <span>{date.toLocaleString(locale, timeOptions)}</span>
-                <span>{date.toLocaleString(locale, dateOptions)}</span>
-              </li>
+              timezonesJsx.push(
+                <li className="timezone-display">
+                  <h1>{timezone.title}</h1>
+                  <span>{date.toLocaleString(locale, timeOptions)}</span>
+                  <span>{date.toLocaleString(locale, dateOptions)}</span>
+                </li>
+              );
+            });
+
+            jsxToRender.push(
+              <div id="timezone-wrapper">
+                <ul>
+                  {timezonesJsx}
+                </ul>
+              </div>
             );
-          });
+          }
 
-          return (
-            <div id="timezone-wrapper">
-              <ul>
-                {timezonesJsx}
-              </ul>
-            </div>
-          );
+          return jsxToRender;
         }
       });
 
       function Logo() {
         const { logo } = appData;
-        let innerJsx;
+        const jsxToRender = [];
 
         if (logo) {
-          innerJsx = (
-            <img
-              id="logo"
-              src={appData.logo}
-            />
+          jsxToRender.push(
+            <div id="logo-wrapper">
+              <img
+                id="logo"
+                src={logo}
+              />
+            </div>
           );
         }
 
-        return (
-          <div id="logo-wrapper">
-            {innerJsx}
-          </div>
-        );
+        return jsxToRender;
       }
 
       const SearchBar = createReactClass({
         getInitialState() {
           const { searchCommands = [] } = appData;
-          const selected = searchCommands[0];
+          const [ selected = {} ] = searchCommands;
           const options = {};
 
           searchCommands.forEach(searchCommand => (
@@ -242,23 +245,28 @@
 
       function HeaderLinks(props) {
         const { headerLinks = [] } = appData;
+        const jsxToRender = [];
         const headerLinksJsx = [];
 
-        headerLinks.forEach(headerLink => (
-          headerLinksJsx.push(
-            <h2>
-              <a href={headerLink.url}>
-                {headerLink.name}
-              </a>
-            </h2>
-          )
-        ));
+        if (headerLinks.length) {
+          headerLinks.forEach(headerLink => (
+            headerLinksJsx.push(
+              <h2>
+                <a href={headerLink.url}>
+                  {headerLink.name}
+                </a>
+              </h2>
+            )
+          ));
 
-        return (
-          <div id="header-links">
-            {headerLinksJsx}
-          </div>
-        );
+          jsxToRender.push(
+            <div id="header-links">
+              {headerLinksJsx}
+            </div>
+          );
+        }
+
+        return jsxToRender;
       }
 
       function LinkGroup(props) {
@@ -268,15 +276,20 @@
         } = props;
         const linkItems = [];
 
-        links.forEach(link => (
+        links.forEach(link => {
+          const {
+            name,
+            url,
+          } = link;
+
           linkItems.push(
             <li>
-              <a href={link.url}>
-                {link.name}
+              <a href={url}>
+                {name}
               </a>
             </li>
           )
-        ));
+        });
 
         return (
           <div className="link-group">
@@ -289,50 +302,61 @@
       }
 
       function LinkGroups() {
+        const { linkGroups = [] } = appData;
+        const jsxToRender = [];
         const rowsJsx = [];
         const chunks = [];
 
-        for (let i = 0; i < appData.linkGroups.length; i += 3) {
-          chunks.push(
-            appData.linkGroups.slice(i, i + 3),
-          );
-        }
+        if (linkGroups.length) {
+          for (let i = 0; i < linkGroups.length; i += 3) {
+            chunks.push(
+              linkGroups.slice(i, i + 3),
+            );
+          }
 
-        chunks.forEach(chunk => {
-          const dimensions = [];
+          chunks.forEach(chunk => {
+            const dimensions = [];
 
-          chunk.forEach(linkGroupData => {
-            dimensions.push(
-              <td width="33%">
-                <LinkGroup
-                  title={linkGroupData.title}
-                  links={linkGroupData.links}
-                />
-              </td>
+            chunk.forEach(linkGroupData => {
+              const {
+                links,
+                title,
+              } = linkGroupData;
+
+              dimensions.push(
+                <td width="33%">
+                  <LinkGroup
+                    title={title}
+                    links={links}
+                  />
+                </td>
+              );
+            });
+
+            // fill chunk to 3
+            for (let i = 0; i < (3 - chunk.length); i++) {
+              dimensions.push(<td width="33%"></td>);
+            }
+
+            rowsJsx.push(
+              <tr>
+                {dimensions}
+              </tr>
             );
           });
 
-          // fill chunk to 3
-          for (let i = 0; i < (3 - chunk.length); i++) {
-            dimensions.push(<td width="33%"></td>);
-          }
-
-          rowsJsx.push(
-            <tr>
-              {dimensions}
-            </tr>
-          );
-        });
-
-        return (
-          <div id="link-groups">
-            <table>
-              <tbody>
+          jsxToRender.push(
+            <div id="link-groups">
+              <table>
+                <tbody>
                 {rowsJsx}
-              </tbody>
-            </table>
-          </div>
-        );
+                </tbody>
+              </table>
+            </div>
+          );
+        }
+
+        return jsxToRender;
       }
 
       const QuoteOfDay = createReactClass({
@@ -376,18 +400,31 @@
         },
 
         render() {
-          return (
-            <div id="quote-of-day">
-              <table>
-                <tbody>
+          const jsxToRender = [];
+          const {
+            author,
+            quote,
+          } = this.state;
+
+          if (
+            author
+            && quote
+          ) {
+            jsxToRender.push(
+              <div id="quote-of-day">
+                <table>
+                  <tbody>
                   <tr>
-                    <td width="80%">"{this.state.quote}"</td>
-                    <td width="20%"> - {this.state.author}</td>
+                    <td width="80%">"{quote}"</td>
+                    <td width="20%"> - {author}</td>
                   </tr>
-                </tbody>
-              </table>
-            </div>
-          );
+                  </tbody>
+                </table>
+              </div>
+            );
+          }
+
+          return jsxToRender;
         }
       });
 
