@@ -5,7 +5,7 @@ const appData = {
     locale: 'en-US',
     zones: [
       {
-        region: 'America/Los_Angeles',
+        region: 'LOCAL',
         title: 'Local Time',
       },
       {

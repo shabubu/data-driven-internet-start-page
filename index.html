@@ -46,18 +46,23 @@
           const timezonesJsx = [];
 
           zones.forEach(timezone => {
+            const { region } = timezone;
             const timeOptions = {
-              timeZone: timezone.region,
               hour: '2-digit',
               minute: '2-digit',
             };
             const dateOptions = {
-              timeZone: timezone.region,
               weekday: "short",
               year: 'numeric',
               month: 'short',
               day: '2-digit',
             };
+
+            // only set timeZone if real region provided
+            if (region.toLowerCase() !== 'local') {
+              timeOptions.timeZone = region;
+              dateOptions.timeZone = region;
+            }
 
             timezonesJsx.push(
               <li className="timezone-display">
