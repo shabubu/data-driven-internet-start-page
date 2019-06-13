@@ -111,27 +111,27 @@ const appData = {
     {
       command: '/g',
       label: 'Google',
-      url: 'https://google.com/search?q=',
+      url: 'https://google.com/search?q={searchQuery}',
     },
     {
       command: '/d',
       label: 'DuckDuckGo',
-      url: 'https://duckduckgo.com/?q=',
+      url: 'https://duckduckgo.com/?q={searchQuery}',
     },
     {
       command: '/h',
       label: 'GitHub',
-      url: 'https://github.com/search?q=',
+      url: 'https://github.com/search?q={searchQuery}',
     },
     {
       command: '/w',
       label: 'Wikipedia',
-      url: 'http://en.wikipedia.org/wiki/Special:Search/',
+      url: 'http://en.wikipedia.org/wiki/Special:Search/{searchQuery}',
     },
     {
       command: '/y',
       label: 'YouTube',
-      url: 'https://youtube.com/results?search_query=',
+      url: 'https://youtube.com/results?search_query={searchQuery}',
     },
   ],
 };

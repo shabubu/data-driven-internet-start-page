@@ -161,7 +161,9 @@
             },
           } = this.state;
 
-          window.location = `${url}${encodeURIComponent(searchQuery)}`;
+          // replace querystring markup
+          const encodedQuery = encodeURIComponent(searchQuery);
+          window.location = url.replace(new RegExp('{searchQuery}', 'g'), encodedQuery);
         },
 
         render() {
