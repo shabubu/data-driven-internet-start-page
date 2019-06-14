@@ -21,6 +21,9 @@ JSON Start Page should run without errors in any modern browsers.  The following
 * Apple Safari
 * Opera
 
+## Setting Start Page when opening New Tabs in Chrome
+If you want to change the opening new tab action in chrome to instead open your start page then I recommend [New tab URL](https://chrome.google.com/webstore/detail/new-tab-url/njigpponciklokfkoddampoienefegcl?hl=en) extension.  It is free, simple, and secure.
+
 ## Customizing the Start Page
 In order to customize the content that displays on your start page you only need to edit one file, [data.js](https://github.com/shabubu/json-start-page/blob/master/data.js).
 
