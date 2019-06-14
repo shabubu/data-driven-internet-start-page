@@ -13,6 +13,14 @@ To view your start page locally simply point your browser to:
 ### Github Page Demo
 Click [here](https://shabubu.github.io/json-start-page/) to see a demo of this application hosted via Github Pages. 
 
+## Browser Support
+JSON Start Page should run without errors in any modern browsers.  The following browsers have been tested and shown to work without errors:
+* Microsoft Edge (Chromium)
+* Google Chrome
+* MozillaFirefox
+* Apple Safari
+* Opera
+
 ## Customizing the Start Page
 In order to customize the content that displays on your start page you only need to edit one file, [data.js](https://github.com/shabubu/json-start-page/blob/master/data.js).
 
